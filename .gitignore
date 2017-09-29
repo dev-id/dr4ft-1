@@ -9,3 +9,20 @@ public/src/config.js
 
 config.client.js
 config.server.js
+
+*.swp
+.DS_Store
+node_modules
+
+data
+public/out
+public/lib
+
+config.client.js
+config.server.js
+
+# Testing.
+reports
+tests_output
+selenium-debug.log
+bin/selenium-standalone.jar
