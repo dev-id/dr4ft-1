@@ -5,6 +5,9 @@ module.exports = {
     start_process: true,
     server_path: "bin/selenium-standalone.jar",
     port: 4444,
+    "cli_args" : {
+      "webdriver.chrome.driver" : "/usr/loca/bin/chromedriver"
+    },
   },
 
   test_settings: {
