@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-readonly SELENIUM_URL='http://selenium-release.storage.googleapis.com/2.53/selenium-server-standalone-2.53.0.jar'
+readonly SELENIUM_URL='http://selenium-release.storage.googleapis.com/3.6/selenium-server-standalone-3.6.0.jar'
 readonly SELENIUM='bin/selenium-standalone.jar'
 readonly NIGHTWATCH='./node_modules/nightwatch/bin/nightwatch'
 
