@@ -4,7 +4,6 @@ module.exports = {
   selenium: {
     start_process: true,
     server_path: "bin/selenium-standalone.jar",
-    host: "localhost",
     port: 4444,
   },
 
