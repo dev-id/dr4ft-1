@@ -76,12 +76,24 @@ function content() {
     d.select({ valueLink: App.link('packs') }, packs),
     ' packs')
   let chaos = d.div({})
+  let draftPacks = d.div({}, d.select({ valueLink: App.link('draftPacks') }, _.seq(6,1).map(x => d.option({}, x))), ' packs')
+  let sealedPacks = d.div({}, d.select({ valueLink: App.link('sealedPacks') }, _.seq(12,1).map(x => d.option({}, x))), ' packs')
   let fourPackBox = d.div({},RBox('fourPack', '4 Pack Sealed: '))
   let modernOnlyBox = d.div({},RBox('modernOnly', 'Only Modern Sets: '))
   let totalChaosBox = d.div({}, RBox('totalChaos', 'Total Chaos: '))
 
   switch(App.state.type) {
-    case 'draft' : return setsTop
+    case 'draft' :
+      var returnSets = []
+      if (App.state.draftPacks > 3) {
+        returnSets.push(d.div({}, sets.slice(0, 3)))
+        returnSets.push(d.div({}, sets.slice(3, App.state.draftPacks)))
+      }
+      else {
+        returnSets.push(d.div({}, sets.slice(0, App.state.draftPacks)))
+      }
+      returnSets.push(draftPacks)
+      return returnSets
     case 'sealed':
       if (App.state.fourPack) { return [setsFourOne, setsFourTwo, fourPackBox] }
       else { return [setsTop, setsBot, fourPackBox] }

@@ -33,16 +33,19 @@ let games = {}
 })()
 
 module.exports = class Game extends Room {
-  constructor({id, title, seats, type, sets, cube, isPrivate, fourPack, modernOnly, totalChaos}) {
+  constructor({id, title, seats, type, sets, cube, isPrivate, sealedPacks, draftPacks, modernOnly, totalChaos}) {
     super({isPrivate})
-    super({fourPack})
+    super({sealedPacks})
+    super({draftPacks})
     super({modernOnly})
     super({totalChaos})
     this.modernOnly = modernOnly
     this.totalChaos = totalChaos
 
     if (sets) {
-      if (fourPack) { sets = sets.slice(0,4) }
+      if (/sealed/.test(this.type)) { sets = sets.slice(0, sealedPacks) }
+      else { sets = sets.slice(0, draftPacks) }
+      //if (fourPack) { sets = sets.slice(0,4) }
       if (type != 'chaos') {
         Object.assign(this, {
           sets,
@@ -65,7 +68,7 @@ module.exports = class Game extends Room {
       id: gameID,
       players: [],
       round: 0,
-      rounds: cube ? cube.packs : 3
+      rounds: cube ? cube.packs : draftPacks
     })
     this.renew()
     games[gameID] = this

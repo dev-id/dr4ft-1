@@ -77,8 +77,11 @@ module.exports = class extends EventEmitter {
       this.pick(index)
   }
   getPack(pack) {
-    if (this.packs.push(pack) === 1)
+    if (this.packs.push(pack) === 1) {
+      console.log('in getPack and === 1')
+      console.log(pack)
       this.sendPack(pack)
+    }
   }
   sendPack(pack) {
     if (pack.length === 1)
